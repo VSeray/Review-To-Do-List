@@ -9,6 +9,12 @@ body {
   justify-content: center;
 }
 
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .todo-list-con {
   display: flex;
   flex-direction: column;

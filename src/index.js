@@ -1,18 +1,15 @@
-import { isComp, checkBox } from './script';
+import { isComp } from './script';
 import {
   listUpdate, addToDo, clearAll, clearAllComp, itemDelete, capitalize,
 } from './addremove';
 import './style.css';
 
 let dataList = [];
-
-const index = (dataList) => {
-  for (let i = 0; i < dataList.length; i++) { /* eslint-disable-line no-plusplus */
-    dataList[i].index = i + i;
-  }
-
+const i = 0;
+dataList.map((dataList) => {
+  dataList[i].index = i + i;
   return dataList;
-};
+});
 
 const saveToLocalStorage = (dataList) => {
   localStorage.setItem('todo_list', JSON.stringify(dataList));
@@ -69,6 +66,20 @@ const component = () => {
     refreshPage();
   });
 
+  const checkBox = (checkbox, todo, dataList, saveToLocalStorage, refreshPage) => {
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        todo.completed = true;
+        saveToLocalStorage(dataList);
+        refreshPage();
+      } else {
+        todo.completed = false;
+        saveToLocalStorage(dataList);
+        refreshPage();
+      }
+    });
+  };
+
   if (dataList.length !== 0) {
     dataList.forEach((todo) => {
       element = document.createElement('li');
@@ -100,7 +111,7 @@ const component = () => {
 
   listUpdate(dataList, saveToLocalStorage, refreshPage);
 
-  itemDelete(dataList, index, saveToLocalStorage, refreshPage);
+  itemDelete(dataList, saveToLocalStorage, refreshPage);
 
   element = document.createElement('li');
 
@@ -110,7 +121,7 @@ const component = () => {
   element.appendChild(clearCompleted);
   todoContainer.appendChild(element);
 
-  clearAllComp(clearCompleted, dataList, index, saveToLocalStorage, refreshPage);
+  clearAllComp(clearCompleted, dataList, saveToLocalStorage, refreshPage);
 };
 
 const pageLoad = () => {
