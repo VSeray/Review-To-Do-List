@@ -20,7 +20,7 @@ This project will be a basic website that allows users to add, modify and remove
 .WebPack
 
 # Live Demo 
-[Live Demo](https://vseray.github.io/To-Do-list/dist/)
+[Live Demo](https://vseray.github.io/Review-To-Do-List/dist/)
 
 # Test
 
